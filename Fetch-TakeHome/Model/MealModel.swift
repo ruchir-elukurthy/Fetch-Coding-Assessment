@@ -7,13 +7,15 @@
 
 import Foundation
 
+struct MealModel: Decodable {
+    let meals: [Meal]
+}
 
-struct MealModel {
+struct Meal: Decodable, Identifiable {
     let idMeal: String
-    let strMeal: String
+    let strMeal: String?
     
-    enum CodingKeys: String {
-        case id = "idMeal"
-        case mealName = "strMeal"
+    var id: String {
+        return idMeal
     }
 }

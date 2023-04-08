@@ -7,19 +7,21 @@
 import SwiftUI
 
 struct MealView: View {
-    let dataArray = ["Item 1", "Item 2", "Item 3"]
+    @ObservedObject var dataFetcher = MealViewModel()
+    @State private var selectedData: String? = nil
 
     var body: some View {
         NavigationView {
-            List(dataArray, id: \.self) { data in
-                NavigationLink(destination: MealDetailsView(data: data)) {
-                    Text(data)
+            VStack {
+                List(dataFetcher.meals) { item in
+                    Text(item.strMeal!)
                 }
             }
-            .navigationBarTitle(Text("Desserts"))
+            .navigationTitle("Meals")
         }
     }
 }
+
 struct MealView_Previews: PreviewProvider {
     static var previews: some View {
         MealView()

@@ -7,14 +7,11 @@
 
 import Foundation
 
-
 class MealViewModel: ObservableObject {
-    func fetchMeals() {
-        //guard let url = URL
-    }
+    @Published var meals: [Meal] = []
 }
 
-// Define a protocol for your API service
+// Define a protocol for API service
 protocol APIServiceProtocol {
     func fetchMeals(completion: @escaping ([MealModel]) -> Void)
 }
@@ -23,9 +20,7 @@ protocol APIServiceProtocol {
 struct MockAPIService: APIServiceProtocol {
     func fetchMeals(completion: @escaping ([MealModel]) -> Void) {
         let meals = [
-            MealModel(idMeal: "53049", strMeal: "Apam balik"),
-            MealModel(idMeal: "52893", strMeal: "Apple & Blackberry Crumble"),
-            MealModel(idMeal: "52768", strMeal: "Apple Frangipan Tart")
+            MealModel(meals: [Meal(idMeal: "52893", strMeal: "Apple & Blackberry Crumble"), Meal(idMeal: "52768", strMeal: "Apple Frangipan Tart")])
         ]
         // Call the completion handler with the mock data
         completion(meals)

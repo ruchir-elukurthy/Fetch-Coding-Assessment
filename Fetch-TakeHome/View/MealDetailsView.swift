@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct MealDetailsView: View {
-    let data: String
 
     var body: some View {
-        Text(data)
-            .navigationBarTitle(Text("Detail View"))
+        Text("Hello World")
     }
 }
 
 struct MealDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MealDetailsView(data: "Item 1")
+        MealDetailsView()
     }
 }
