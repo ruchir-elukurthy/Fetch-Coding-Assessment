@@ -20,7 +20,7 @@ struct MealView: View {
                 }
             }
             .onAppear {
-                self.dataFetcher.fetchData()
+                dataFetcher.fetchMeals()
             }
             .navigationTitle("Meals")
         }
