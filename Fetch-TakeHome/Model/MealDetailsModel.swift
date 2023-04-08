@@ -8,11 +8,15 @@
 import Foundation
 
 struct MealDetailsModel: Decodable {
+    let meals: [MealDetails]
+}
+
+struct MealDetails: Decodable {
     var idMeal: String
-    var strMeal: String
-    var instructions: String
-    var ingredients: [String]
-    var measures: [String]
+    var strMeal: String?
+    var instructions: String?
+    var ingredients: [String]?
+    var measures: [String]?
     
     var id: String {
         return idMeal
