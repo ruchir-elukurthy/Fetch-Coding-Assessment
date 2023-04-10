@@ -10,28 +10,23 @@ import XCTest
 
 class MealViewModelTests: XCTestCase {
     var mealViewModel: MealViewModel!
-    var mockAPIService: MockAPIService!
+    var mockAPIService: MealAPIServiceProtocol!
     
     override func setUp() {
         super.setUp()
-        mockAPIService = MockAPIService()
+        mockAPIService = MockMealAPIService()
         mealViewModel = MealViewModel(apiService: mockAPIService)
     }
     
-    override func tearDown() {
-        mockAPIService = nil
-        mealViewModel = nil
-        super.tearDown()
-    }
-    
     func testFetchData() {
-        let expectation = self.expectation(description: "Fetch meals")
+        //Given data form mock
         
+        //When API fetch is called
         mealViewModel.fetchMeals()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            XCTAssert(self.mealViewModel.meals.count == 2)
-            expectation.fulfill()
+            //Then
+            XCTAssertEqual(self.mealViewModel.meals.count, 2)
         }
         
         waitForExpectations(timeout: 3, handler: nil)

@@ -14,6 +14,7 @@ struct MealModel: Decodable {
 struct Meal: Decodable, Identifiable {
     let idMeal: String
     let strMeal: String?
+    let strCategory: String?
     
     var id: String {
         return idMeal

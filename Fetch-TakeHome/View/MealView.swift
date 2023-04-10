@@ -14,7 +14,7 @@ struct MealView: View {
         NavigationView {
             VStack {
                 List(dataFetcher.meals) { item in
-                    NavigationLink(destination: MealDetailsView(), tag: item.strMeal!, selection: self.$selectedData) {
+                    NavigationLink(destination: MealDetailsView(mealID: item.idMeal), tag: item.strMeal!, selection: self.$selectedData) {
                         Text(item.strMeal!)
                     }
                 }

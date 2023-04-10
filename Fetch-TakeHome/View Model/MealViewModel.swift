@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MealAPIService: APIServiceProtocol {
+struct MealAPIService: MealAPIServiceProtocol {
     func fetchMeals(completion: @escaping ([MealModel]) -> Void) {
         // Call the fetchData() method to fetch data from the API endpoint
         fetchData { meals in
@@ -30,15 +30,8 @@ struct MealAPIService: APIServiceProtocol {
             if let data = data {
                 do {
                     let response = try JSONDecoder().decode(MealModel.self, from: data)
-                    var cleanedData = [Meal]()
-                    for item in response.meals {
-                        if let strMeal = item.strMeal, !strMeal.isEmpty {
-                            cleanedData.append(item)
-                        }
-                    }
-
                     // Call the completion handler with the fetched and cleaned data
-                    completion(cleanedData)
+                    completion(response.meals)
                 } catch let error {
                     print(error)
                 }
@@ -49,9 +42,9 @@ struct MealAPIService: APIServiceProtocol {
 
 class MealViewModel: ObservableObject {
     @Published var meals: [Meal] = []
-    let apiService: APIServiceProtocol
+    let apiService: MealAPIServiceProtocol
     
-    init(apiService: APIServiceProtocol = MealAPIService()) {
+    init(apiService: MealAPIServiceProtocol = MealAPIService()) {
         self.apiService = apiService
     }
     
@@ -71,17 +64,6 @@ class MealViewModel: ObservableObject {
 
 
 // Define a protocol for API service
-protocol APIServiceProtocol {
+protocol MealAPIServiceProtocol {
     func fetchMeals(completion: @escaping ([MealModel]) -> Void)
-}
-
-// Create a mock service that conforms to the APIServiceProtocol
-struct MockAPIService: APIServiceProtocol {
-    func fetchMeals(completion: @escaping ([MealModel]) -> Void) {
-        let meals = [
-            MealModel(meals: [Meal(idMeal: "52893", strMeal: "Apple & Blackberry Crumble"), Meal(idMeal: "52768", strMeal: "Apple Frangipan Tart")])
-        ]
-        // Call the completion handler with the mock data
-        completion(meals)
-    }
 }
