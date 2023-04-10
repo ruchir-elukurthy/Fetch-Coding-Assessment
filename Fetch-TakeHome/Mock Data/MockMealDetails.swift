@@ -35,7 +35,7 @@ func dummyMeal() -> MealDetails {
             "strMeasure3": "pinch",
             "strMeasure4": "spinkling",
             "strMeasure5": "1 tsp",
-            "strMeasure6": "25g"
+            "strMeasure6": "25g",
             "strMeasure7": "125g"
         }
         """

@@ -20,6 +20,7 @@ class MealDetailsViewModelTests: XCTestCase {
     }
     
     func testFetchMealDetails() {
+        let expectation = self.expectation(description: "Fetch meals for ID")
         // Given mealID
         let mealID = "52855"
         
@@ -28,7 +29,10 @@ class MealDetailsViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             //Then
             XCTAssertEqual(self.viewModel.mealDetails.count, 1)
-            XCTAssertEqual(self.viewModel.mealDetails.first?.idMeal, "52772")
+            XCTAssertEqual(self.viewModel.mealDetails.first?.idMeal, "52855")
+            expectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 3, handler: nil)
     }
 }
