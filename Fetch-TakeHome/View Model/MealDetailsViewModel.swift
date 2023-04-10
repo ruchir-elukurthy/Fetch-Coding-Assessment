@@ -48,6 +48,7 @@ class MealDetailsViewModel: ObservableObject {
         self.apiService = apiService
     }
     
+    //Fetch the meal details from the API using the API Service
     func fetchMealDetails(mealID: String) {
         apiService.fetchMealDetails(mealID: mealID) { [weak self] mealModels in
             // Transform the data to an array of Meal objects

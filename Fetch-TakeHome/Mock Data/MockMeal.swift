@@ -11,7 +11,7 @@ import Foundation
 struct MockMealAPIService: MealAPIServiceProtocol {
     func fetchMeals(completion: @escaping ([MealModel]) -> Void) {
         let meals = [
-            MealModel(meals: [Meal(idMeal: "52893", strMeal: "Apple & Blackberry Crumble", strCategory: "Dessert"), Meal(idMeal: "52768", strMeal: "Apple Frangipan Tart", strCategory: "Entree")])
+            MealModel(meals: [Meal(idMeal: "52893", strMeal: "Apple & Blackberry Crumble"), Meal(idMeal: "52768", strMeal: "Apple Frangipan Tart")])
         ]
         // Call the completion handler with the mock data
         completion(meals)
