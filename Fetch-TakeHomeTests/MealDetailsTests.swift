@@ -29,7 +29,7 @@ class MealDetailsViewModelTests: XCTestCase {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             //Then
             XCTAssertEqual(self.viewModel.mealDetails.count, 1)
-            XCTAssertEqual(self.viewModel.mealDetails.first?.idMeal, "52855")
+            XCTAssertEqual(self.viewModel.mealDetails[0].idMeal, "52855")
             expectation.fulfill()
         }
         
