@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MealDetailsView: View {
     @ObservedObject var dataFetcher = MealDetailsViewModel()
-    @State private var selectedData: String? = nil
     var mealID: String
 
     var body: some View {

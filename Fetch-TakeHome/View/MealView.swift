@@ -8,13 +8,12 @@ import SwiftUI
 
 struct MealView: View {
     @ObservedObject var dataFetcher = MealViewModel()
-    @State private var selectedData: String? = nil
 
     var body: some View {
         NavigationView {
             VStack {
                 List(dataFetcher.meals) { item in
-                    NavigationLink(destination: MealDetailsView(mealID: item.idMeal), tag: item.strMeal!, selection: self.$selectedData) {
+                    NavigationLink(destination: MealDetailsView(mealID: item.idMeal)) {
                         Text(item.strMeal!)
                     }
                 }
