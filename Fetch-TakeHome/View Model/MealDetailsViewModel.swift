@@ -10,13 +10,13 @@ import Foundation
 struct MealDetailsAPIService: MealDetailsAPIServiceProtocol {
     func fetchMealDetails(mealID: String, completion: @escaping (MealDetailsModel) -> Void) {
         // Call the fetchData() method to fetch data from the API endpoint
-        fetchData(mealID: mealID) { meals in
+        fetchMealDetailsData(mealID: mealID) { meals in
             // Call the completion handler with the transformed data
             completion(MealDetailsModel(meals: meals))
         }
     }
     
-    private func fetchData(mealID: String, completion: @escaping ([MealDetails]) -> Void) {
+    private func fetchMealDetailsData(mealID: String, completion: @escaping ([MealDetails]) -> Void) {
         // create a URL object for the API endpoint you want to fetch
         guard let url = URL(string: "https://themealdb.com/api/json/v1/1/lookup.php?i=\(mealID)") else {
             print("Invalid URL")
