@@ -8,13 +8,11 @@
 import Foundation
 
 struct MealAPIService: MealAPIServiceProtocol {
-    func fetchMeals(completion: @escaping ([MealModel]) -> Void) {
+    func fetchMeals(completion: @escaping (MealModel) -> Void) {
         // Call the fetchData() method to fetch data from the API endpoint
         fetchData { meals in
-            // Transform the data to an array of MealModel objects
-            let mealModels = meals.map { MealModel(meals: [$0]) }
             // Call the completion handler with the transformed data
-            completion(mealModels)
+            completion(MealModel(meals: meals))
         }
     }
     
@@ -50,9 +48,9 @@ class MealViewModel: ObservableObject {
     
     //Fetch the meals from the API using the API Service
     func fetchMeals() {
-        apiService.fetchMeals { [weak self] mealModels in
+        apiService.fetchMeals { [weak self] mealModel in
             // Transform the data to an array of Meal objects
-            let meals = mealModels.flatMap { $0.meals }
+            let meals = mealModel.meals
             // Sort the data by the meal name
             let sortedMeals = meals.sorted(by: { $0.strMeal! < $1.strMeal! })
             // Update the view model with the sorted data
@@ -63,8 +61,6 @@ class MealViewModel: ObservableObject {
     }
 }
 
-
-// Define a protocol for API service
 protocol MealAPIServiceProtocol {
-    func fetchMeals(completion: @escaping ([MealModel]) -> Void)
+    func fetchMeals(completion: @escaping (MealModel) -> Void)
 }

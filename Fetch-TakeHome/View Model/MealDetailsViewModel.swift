@@ -8,13 +8,11 @@
 import Foundation
 
 struct MealDetailsAPIService: MealDetailsAPIServiceProtocol {
-    func fetchMealDetails(mealID: String, completion: @escaping ([MealDetailsModel]) -> Void) {
+    func fetchMealDetails(mealID: String, completion: @escaping (MealDetailsModel) -> Void) {
         // Call the fetchData() method to fetch data from the API endpoint
         fetchData(mealID: mealID) { meals in
-            // Transform the data to an array of MealDetailsModel objects
-            let mealModels = meals.map { MealDetailsModel(meals: [$0]) }
             // Call the completion handler with the transformed data
-            completion(mealModels)
+            completion(MealDetailsModel(meals: meals))
         }
     }
     
@@ -53,7 +51,7 @@ class MealDetailsViewModel: ObservableObject {
         apiService.fetchMealDetails(mealID: mealID) { [weak self] mealModels in
             // Transform the data to an array of Meal objects
             DispatchQueue.main.async {
-                self?.mealDetails = mealModels.flatMap { $0.meals }
+                self?.mealDetails = mealModels.meals
             }
         }
     }
@@ -62,5 +60,5 @@ class MealDetailsViewModel: ObservableObject {
 
 // Define a protocol for API service
 protocol MealDetailsAPIServiceProtocol {
-    func fetchMealDetails(mealID: String, completion: @escaping ([MealDetailsModel]) -> Void)
+    func fetchMealDetails(mealID: String, completion: @escaping (MealDetailsModel) -> Void)
 }

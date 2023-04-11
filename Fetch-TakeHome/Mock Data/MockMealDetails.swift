@@ -9,10 +9,10 @@ import Foundation
 
 //Create a mock service that conforms to the APIServiceProtocol
 struct MockMealDetailsAPIService: MealDetailsAPIServiceProtocol {
-    func fetchMealDetails(mealID: String, completion: @escaping ([MealDetailsModel]) -> Void) {
+    func fetchMealDetails(mealID: String, completion: @escaping (MealDetailsModel) -> Void) {
         let dummyMeal = dummyMeal()
         let mealModel = MealDetailsModel(meals: [dummyMeal])
-        completion([mealModel])
+        completion(mealModel)
     }
 }
 
