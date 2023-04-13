@@ -8,30 +8,40 @@
 import SwiftUI
 
 struct MealDetailsView: View {
-    @ObservedObject var dataFetcher = MealDetailsViewModel()
+    @ObservedObject var mealDetailsDataFetcher = MealDetailsViewModel()
     var mealID: String
 
     var body: some View {
-        List(dataFetcher.mealDetails) { item in
-            VStack {
-                Text(item.strMeal)
-                    .font(.largeTitle)
-                    .frame(width: 300)
-                    .padding(10)
-                Text("Instructions: \(item.strInstructions)")
-                    .padding([.bottom], 20)
-                Text("Ingredients")
-                    .font(.title2)
-                    .frame(width: 300)
+        VStack {
+            if(mealDetailsDataFetcher.mealDetails.count == 0) {
+                Text("Loading...")
             }
-            ForEach(0..<item.ingredients.count, id: \.self) { index in
-                HStack {
-                    Text("\(item.ingredients[index]) : \(item.measures[index])")
+            else {
+                List(mealDetailsDataFetcher.mealDetails) { item in
+                    VStack {
+                        Text(item.strMeal)
+                            .font(.largeTitle)
+                            .frame(width: 300)
+                            .padding(10)
+                        Text("Instructions: \(item.strInstructions)")
+                            .padding([.bottom], 20)
+                        Text("Ingredients")
+                            .font(.title2)
+                            .frame(width: 300)
+                    }
+                    ForEach(0..<item.ingredients.count, id: \.self) { index in
+                        HStack {
+                            Text("\(item.ingredients[index]) : \(item.measures[index])")
+                        }
+                    }
                 }
             }
         }
+        .listStyle(.plain)
+        .offset(x: -10)
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            dataFetcher.fetchMealDetails(mealID: mealID)
+            mealDetailsDataFetcher.fetchMealDetails(mealID: mealID)
         }
     }
 }

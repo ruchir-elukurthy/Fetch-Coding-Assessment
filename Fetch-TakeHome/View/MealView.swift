@@ -7,20 +7,27 @@
 import SwiftUI
 
 struct MealView: View {
-    @ObservedObject var dataFetcher = MealViewModel()
+    @ObservedObject var mealDataFetcher = MealViewModel()
 
     var body: some View {
         NavigationView {
             VStack {
-                List(dataFetcher.meals) { item in
-                    NavigationLink(destination: MealDetailsView(mealID: item.idMeal)) {
-                        Text(item.strMeal!)
+                if(mealDataFetcher.meals.count == 0) {
+                    Text("Loading...")
+                }
+                else {
+                    List(mealDataFetcher.meals) { item in
+                        NavigationLink(destination: MealDetailsView(mealID: item.idMeal)) {
+                            Text(item.strMeal!)
+                        }
                     }
                 }
             }
             .onAppear {
-                dataFetcher.fetchMeals()
+                mealDataFetcher.fetchMeals()
             }
+            .listStyle(.plain)
+            .offset(x: -10)
             .navigationTitle("Meals")
         }
     }
