@@ -11,8 +11,10 @@ struct MealAPIService: MealAPIServiceProtocol {
     func fetchMeals(completion: @escaping (MealModel) -> Void) {
         // Call the fetchData() method to fetch data from the API endpoint
         fetchMealData { meals in
+            // Sort the data by the meal name
+            let sortedMeals = meals.sorted(by: { $0.strMeal! < $1.strMeal! })
             // Call the completion handler with the transformed data
-            completion(MealModel(meals: meals))
+            completion(MealModel(meals: sortedMeals))
         }
     }
     
@@ -49,13 +51,8 @@ class MealViewModel: ObservableObject {
     //Fetch the meals from the API using the API Service
     func fetchMeals() {
         apiService.fetchMeals { [weak self] mealModel in
-            // Transform the data to an array of Meal objects
-            let meals = mealModel.meals
-            // Sort the data by the meal name
-            let sortedMeals = meals.sorted(by: { $0.strMeal! < $1.strMeal! })
-            // Update the view model with the sorted data
             DispatchQueue.main.async {
-                self?.meals = sortedMeals
+                self?.meals = mealModel.meals
             }
         }
     }
