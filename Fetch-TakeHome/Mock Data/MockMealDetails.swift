@@ -40,8 +40,8 @@ func dummyMeal() -> MealDetails {
         }
         """
 
-    let data = json.data(using: .utf8)!
+    let dummyData = json.data(using: .utf8)!
     let decoder = JSONDecoder()
-    let meal = try! decoder.decode(MealDetails.self, from: data)
+    let meal = try! decoder.decode(MealDetails.self, from: dummyData)
     return meal
 }
