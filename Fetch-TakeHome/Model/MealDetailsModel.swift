@@ -56,3 +56,39 @@ struct MealDetails: Decodable, Identifiable {
         measures = measuresArray
     }
 }
+
+struct MealDetailsAPIService: MealDetailsAPIServiceProtocol {
+    func fetchMealDetails(mealID: String, completion: @escaping (MealDetailsModel) -> Void) {
+        // Call the fetchData() method to fetch data from the API endpoint
+        fetchMealDetailsData(mealID: mealID) { meals in
+            // Call the completion handler with the transformed data
+            completion(MealDetailsModel(meals: meals))
+        }
+    }
+    
+    private func fetchMealDetailsData(mealID: String, completion: @escaping ([MealDetails]) -> Void) {
+        // create a URL object for the API endpoint you want to fetch
+        guard let url = URL(string: "https://themealdb.com/api/json/v1/1/lookup.php?i=\(mealID)") else {
+            print("Invalid URL")
+            return
+        }
+        
+        // create a URL session
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(MealDetailsModel.self, from: data)
+                    // Call the completion handler with the fetched and cleaned data
+                    completion(response.meals)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
+}
+
+// Define a protocol for API service
+protocol MealDetailsAPIServiceProtocol {
+    func fetchMealDetails(mealID: String, completion: @escaping (MealDetailsModel) -> Void)
+}
