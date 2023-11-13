@@ -11,7 +11,6 @@
 		BA3EC2ED29DE26E000716D89 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EC2EC29DE26E000716D89 /* ContentView.swift */; };
 		BA3EC2EF29DE26E200716D89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3EC2EE29DE26E200716D89 /* Assets.xcassets */; };
 		BA3EC2F229DE26E200716D89 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA3EC2F129DE26E200716D89 /* Preview Assets.xcassets */; };
-		BA3EC2FC29DE26E200716D89 /* MealViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EC2FB29DE26E200716D89 /* MealViewTests.swift */; };
 		BA3EC30629DE26E200716D89 /* Fetch_TakeHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EC30529DE26E200716D89 /* Fetch_TakeHomeUITests.swift */; };
 		BA3EC30829DE26E200716D89 /* Fetch_TakeHomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EC30729DE26E200716D89 /* Fetch_TakeHomeUITestsLaunchTests.swift */; };
 		BA3EC31929DE6AD800716D89 /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EC31829DE6AD800716D89 /* MealModel.swift */; };
@@ -49,7 +48,6 @@
 		BA3EC2EE29DE26E200716D89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA3EC2F129DE26E200716D89 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA3EC2F729DE26E200716D89 /* Fetch-TakeHomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fetch-TakeHomeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA3EC2FB29DE26E200716D89 /* MealViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewTests.swift; sourceTree = "<group>"; };
 		BA3EC30129DE26E200716D89 /* Fetch-TakeHomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fetch-TakeHomeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3EC30529DE26E200716D89 /* Fetch_TakeHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeUITests.swift; sourceTree = "<group>"; };
 		BA3EC30729DE26E200716D89 /* Fetch_TakeHomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 		BA3EC2E929DE26E000716D89 /* Fetch-TakeHome */ = {
 			isa = PBXGroup;
 			children = (
-				BA3EC32629E3DB3A00716D89 /* Mock Data */,
 				BA3EC31729DE69A700716D89 /* View Model */,
 				BA3EC31529DE697D00716D89 /* View */,
 				BA3EC31429DE697300716D89 /* Model */,
@@ -135,8 +132,8 @@
 		BA3EC2FA29DE26E200716D89 /* Fetch-TakeHomeTests */ = {
 			isa = PBXGroup;
 			children = (
-				BA3EC2FB29DE26E200716D89 /* MealViewTests.swift */,
 				BA3EC32429E3C8FC00716D89 /* MealDetailsTests.swift */,
+				BA3EC32629E3DB3A00716D89 /* Mock Data */,
 			);
 			path = "Fetch-TakeHomeTests";
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA3EC2FC29DE26E200716D89 /* MealViewTests.swift in Sources */,
 				BA3EC32529E3C8FC00716D89 /* MealDetailsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

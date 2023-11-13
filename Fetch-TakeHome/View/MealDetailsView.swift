@@ -19,11 +19,11 @@ struct MealDetailsView: View {
             else {
                 List(mealDetailsDataFetcher.mealDetails) { item in
                     VStack {
-                        Text(item.strMeal)
+                        Text(item.name)
                             .font(.largeTitle)
                             .frame(width: 300)
                             .padding(10)
-                        Text("Instructions: \(item.strInstructions)")
+                        Text("Instructions: \(item.instructions)")
                             .padding([.bottom], 20)
                         Text("Ingredients")
                             .font(.title2)

@@ -20,7 +20,7 @@ class MealDetailsViewModel: ObservableObject {
         apiService.fetchMealDetails(mealID: mealID) { [weak self] mealModels in
             // Transform the data to an array of Meal objects
             DispatchQueue.main.async {
-                self?.mealDetails = mealModels.meals
+                self?.mealDetails = mealModels.meals.sorted { $0.name < $1.name }
             }
         }
     }

@@ -12,18 +12,16 @@ struct MealDetailsModel: Decodable {
 }
 
 struct MealDetails: Decodable, Identifiable {
-    let idMeal: String
-    let strMeal: String
-    let strInstructions: String
+    let name: String
+    let instructions: String
     let ingredients: [String]
     let measures: [String]
-
-    var id: String {
-        return idMeal
-    }
-
+    let id: String
+    
     enum CodingKeys: String, CodingKey {
-        case idMeal, strMeal, strInstructions
+        case id = "idMeal"
+        case name = "strMeal"
+        case instructions = "strInstructions"
         case strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7, strIngredient8, strIngredient9, strIngredient10, strIngredient11, strIngredient12, strIngredient13, strIngredient14, strIngredient15, strIngredient16, strIngredient17, strIngredient18, strIngredient19, strIngredient20
         case strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5, strMeasure6, strMeasure7, strMeasure8, strMeasure9, strMeasure10, strMeasure11, strMeasure12, strMeasure13, strMeasure14, strMeasure15, strMeasure16, strMeasure17, strMeasure18, strMeasure19, strMeasure20
     }
@@ -31,9 +29,9 @@ struct MealDetails: Decodable, Identifiable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        idMeal = try container.decode(String.self, forKey: .idMeal)
-        strMeal = try container.decode(String.self, forKey: .strMeal)
-        strInstructions = try container.decode(String.self, forKey: .strInstructions)
+        id = try container.decode(String.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        instructions = try container.decode(String.self, forKey: .instructions)
 
         var ingredientsArray = [String]()
         var measuresArray = [String]()
@@ -56,6 +54,7 @@ struct MealDetails: Decodable, Identifiable {
         measures = measuresArray
     }
 }
+
 
 struct MealDetailsAPIService: MealDetailsAPIServiceProtocol {
     func fetchMealDetails(mealID: String, completion: @escaping (MealDetailsModel) -> Void) {

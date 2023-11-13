@@ -24,10 +24,8 @@ struct MealAPIService: MealAPIServiceProtocol {
     func fetchMeals(completion: @escaping (MealModel) -> Void) {
         // Call the fetchData() method to fetch data from the API endpoint
         fetchMealData { meals in
-            // Sort the data by the meal name
-            let sortedMeals = meals.sorted(by: { $0.strMeal! < $1.strMeal! })
             // Call the completion handler with the transformed data
-            completion(MealModel(meals: sortedMeals))
+            completion(MealModel(meals: meals))
         }
     }
     
